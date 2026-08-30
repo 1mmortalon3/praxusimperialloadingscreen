@@ -372,6 +372,7 @@ html, body {
 <div id="scanlines"></div>
 <div id="edgeGlow"></div>
 <video id="videoBackground" autoplay loop muted playsinline preload="auto">
+    <source src="dark-lords-army.1920x1080.webm" type="video/webm">
     <source src="dark-lords-army.1920x1080.mp4" type="video/mp4">
 </video>
 
@@ -436,6 +437,10 @@ html, body {
         currentStatus = cleanText(value, currentStatus);
         statusText.textContent = currentStatus;
     }
+
+    videoBackground.addEventListener('error', function () {
+        setStatus('Video unavailable - check the WebM filename and VP8 codec');
+    });
 
     function updateAudioLabel() {
         var off = audio.paused || audio.muted || audio.volume === 0;
